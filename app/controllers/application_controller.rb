@@ -4,4 +4,8 @@ class ApplicationController < ActionController::Base
   def home
       render html: "Welcome to Rod Bending Technology!"
   end
+  
+  def about
+    render html "Here you can learn all about RBT"
+  end
 end

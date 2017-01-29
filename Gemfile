@@ -10,6 +10,7 @@ gem 'turbolinks',   '5.0.1'
 gem 'execjs'
 gem 'therubyracer'
 gem 'jbuilder',     '2.4.1'
+gem 'bootstrap-sass', '3.3.6'
 
 group :development, :test do
   gem 'sqlite3', '1.3.12'

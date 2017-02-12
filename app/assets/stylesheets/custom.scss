@@ -1,11 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/* variables */
-
 /* universal */
 
 body {
+  font-family: "Arial", Arial, Sans-serif;
   padding-top: 60px;
 }
 
@@ -38,12 +37,12 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 1.3em;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $gray-light;
+  color: #777;
 }
 
 p {
@@ -62,10 +61,11 @@ p {
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
-  &:hover {
-    color: #fff;
-    text-decoration: none;
-  }
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
 }
 
 /* footer */
@@ -74,22 +74,27 @@ footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
-  color: $gray-light;
-  a {
-    color: #555;
-    &:hover {
-      color: #222;
-    }
-  }
- small {
+  color: #777;
+}
+
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer small {
   float: left;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 15px;
-    }
-  }
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
 }

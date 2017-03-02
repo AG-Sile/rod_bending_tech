@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   get '/signup',   to: 'users#new'
   post '/signup',  to: 'users#create'
   resources :users
-  
+
+# Let’s encrypt
+get '/.well-known/acme-challenge/:id' => 'static_pages#letsencrypt'
 end

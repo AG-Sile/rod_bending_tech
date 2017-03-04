@@ -25,3 +25,6 @@ server.*
 
 # Ignore certbot
 certbot-auto
+
+# Ignore heroku install file
+heroku.tar.gz

@@ -9,10 +9,21 @@ class User < ApplicationRecord
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   attr_accessor :remember_token
 
+  ALLOWABLE_PERMISSIONS =
+  [ "end_user",
+    "admin"
+  ].freeze
+
+  # def admin?
+  # def end_user?
+
+  ALLOWABLE_PERMISSIONS.each do | permission |
+    define_method("#{permission}?") { self.permission == permission }
+  end
 
   # Returns the hash digest of the given string.
   def self.digest(string)

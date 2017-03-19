@@ -2,6 +2,11 @@ class User < ApplicationRecord
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
+  ALLOWABLE_PERMISSIONS =
+    [ "end_user",
+      "admin"
+    ].freeze
+
   before_save { self.email = email.downcase }
 
   validates :name, presence: true, length: { maximum: 100 }, uniqueness: true
@@ -10,17 +15,12 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  validates :permission, :inclusion => { :in => ALLOWABLE_PERMISSIONS }
 
   attr_accessor :remember_token
 
-  ALLOWABLE_PERMISSIONS =
-  [ "end_user",
-    "admin"
-  ].freeze
-
   # def admin?
   # def end_user?
-
   ALLOWABLE_PERMISSIONS.each do | permission |
     define_method("#{permission}?") { self.permission == permission }
   end

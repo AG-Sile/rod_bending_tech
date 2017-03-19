@@ -15,7 +15,7 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'jbuilder',                 '2.4.1'
 gem 'bootstrap-sass',           '3.3.6'
-
+gem "sentry-raven"
 
 group :development, :test do
   gem 'sqlite3', '1.3.12'
@@ -32,7 +32,7 @@ end
 
 group :production do
   gem 'pg', '0.19'
-  gem "sentry-raven"
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

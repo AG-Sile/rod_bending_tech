@@ -16,6 +16,7 @@ gem 'therubyracer'
 gem 'jbuilder',                 '2.4.1'
 gem 'bootstrap-sass',           '3.3.6'
 gem "sentry-raven"
+gem 'pry'
 
 group :development, :test do
   gem 'sqlite3', '1.3.12'

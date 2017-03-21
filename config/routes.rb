@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post   '/login',    to: 'sessions#create'
   delete '/logout',   to: 'sessions#destroy'
   resources :users
-
+  resources :account_activations, only: [:edit]
 # Let’s encrypt
 get '/.well-known/acme-challenge/:id' => 'static_pages#letsencrypt'
 end

@@ -1,10 +1,8 @@
-<h1>Rod Bending Technology</h1>
+<p>Rod Bending Technology</p>
 
 <p>Hi <%= @user.name %>,</p>
 
 <p>
-Welcome to the Rod Bending Technology! Click on the link below to activate your account:
+Welcome to the Rod Bending Technology! Click <%= link_to "here", edit_account_activation_url(@user.activation_token,
+                                                    email: @user.email) %> to activate your account.
 </p>
-
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
-                                                    email: @user.email) %>

@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411004256) do
+ActiveRecord::Schema.define(version: 20170415125242) do
 
-  create_table "attributes", force: :cascade do |t|
+  create_table "product_variants", force: :cascade do |t|
     t.string   "name"
-    t.integer  "variant_id"
+    t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["variant_id"], name: "index_attributes_on_variant_id"
+    t.string   "option"
+    t.index ["product_id"], name: "index_product_variants_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -41,14 +42,6 @@ ActiveRecord::Schema.define(version: 20170411004256) do
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
-  end
-
-  create_table "variants", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_variants_on_product_id"
   end
 
 end

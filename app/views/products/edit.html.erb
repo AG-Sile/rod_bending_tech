@@ -10,6 +10,14 @@
 
       <%= f.label :description %>
       <%= f.text_field :description, class: 'form-control' %>
+      <div id='product_variants'>
+        <%= f.fields_for :product_variants do |pv| %>
+          <%= render 'product_variant_fields', :f => pv %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association "Add Product Variant", f, :product_variants %>
+        </div>
+      </div>
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>

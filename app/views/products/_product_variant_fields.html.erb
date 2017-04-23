@@ -1,0 +1,11 @@
+<div class='nested-fields'>
+  <div class="field">
+    <%= f.label :variation_name %>
+    <%= f.text_field :name, class: 'form_control' %>
+  </div>
+  <div class="field">
+    <%= f.label :variation %>
+    <%= f.text_field :variation, class: 'form_control' %>
+  </div>
+  <%= link_to_remove_association "remove task", f %>
+</div>

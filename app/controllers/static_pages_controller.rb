@@ -9,9 +9,6 @@ class StaticPagesController < ApplicationController
   def about
   end
 
-  def products
-  end
-
   def letsencrypt
     render text: "#{params[:id]}.7otAJd9MSyUfvE-yWluopXs7gkPHzOUj1faEOAKn4jk"
   end

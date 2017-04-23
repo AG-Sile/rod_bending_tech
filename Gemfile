@@ -18,8 +18,7 @@ gem 'bootstrap-sass',           '3.3.6'
 gem "sentry-raven"
 gem 'pry'
 gem 'json'
-gem 'money'
-gem 'monetize'
+gem "cocoon"
 
 group :development, :test do
   gem 'sqlite3', '1.3.12'

@@ -14,12 +14,19 @@ class ProductsController < ApplicationController
 
    def create
     @product = Product.new(product_params)
+    binding.pry
     if @product.save
       flash[:info] = "Product succesfully created."
       redirect_to root_url
     else
       render 'new'
     end
+  end
+
+  def destroy
+    Product.find(params[:id]).destroy
+    flash[:success] = "Product deleted"
+    redirect_to products_path
   end
 
   def edit
@@ -39,7 +46,9 @@ class ProductsController < ApplicationController
   private
 
     def product_params
-      params.require(:product).permit(:name, :description)
+      params.require(:product).permit(
+        :name, :description,
+        product_variants_attributes: [:id, :product_id, :name, :variation, :_destroy])
     end
 
 end

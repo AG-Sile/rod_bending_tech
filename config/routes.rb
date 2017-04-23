@@ -10,10 +10,13 @@ Rails.application.routes.draw do
   get    '/login',       to: 'sessions#new'
   post   '/login',       to: 'sessions#create'
   delete '/logout',      to: 'sessions#destroy'
-  get   '/add_product',  to: 'products#new'
+  get    '/add_product', to: 'products#new'
   post   '/add_product', to: 'products#create'
+  get    '/add_product_variant', to: 'product_variants#new'
+  post   '/add_product_variant', to: 'product_variants#create'
   resources :users
   resources :products
+  resources :product_variants
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
 # Let’s encrypt

@@ -35,6 +35,7 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
+    binding.pry
     if @product.update_attributes(product_params)
       flash[:success] = "Product updated"
       redirect_to @product
@@ -48,7 +49,8 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(
         :name, :description,
-        product_variants_attributes: [:id, :product_id, :name, :variation, :_destroy])
+        product_variants_attributes: [:id, :product_id, :name, :variation, :_destroy, pictures_attributes: [:id, :_destroy, :picture] ]
+      )
     end
 
 end

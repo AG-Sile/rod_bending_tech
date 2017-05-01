@@ -1,23 +1,37 @@
+
 <% provide(:title, @product.name) %>
 <div class="row">
-    <section class="product_info">
+    <section>
       <h1>
         <%= @product.name %>
       </h1>
-      <description>
-        <%= @product.description %>
-      </description>
-    </section>
-    <% if @product.product_variants.any? %>
-      <% @product.product_variants.map(&:name).uniq.each do | var_name | %>
-        <div class="dropdown">
-          <button class="dropbtn"><%= var_name %></button>
-          <div class="dropdown-content">
-          <% @product.product_variants.where(name: var_name).each do | pv | %>
-            <a href="#"><%= pv.variation %> </a>
-          <% end %>
-          </div>
+      <div>
+        <aside class="prodimg">
+          <% all_picture_urls = @product.pictures.map { |p| p.picture.url } %>
+          <%= carousel_for(all_picture_urls) if all_picture_urls.any? %>
+
+        </aside>
+        <div class="description">
+          <%= @product.description %>
+
         </div>
-      <% end %>
-    <% end %>
+      </div>
+      <div class="description">
+        <% if @product.product_variants.any? %>
+          <% @product.product_variants.map(&:name).uniq.each do | var_name | %>
+            <div class="dropdown">
+              <button class="dropbtn"><%= var_name %></button>
+              <div class="dropdown-content">
+              <% @product.product_variants.where(name: var_name).each do | pv | %>
+                <a href="#"><%= pv.variation %> </a>
+              <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </section>
 </div>
+
+
+

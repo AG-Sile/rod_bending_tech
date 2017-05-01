@@ -113,6 +113,7 @@ aside {
   section {
     padding: 10px 0;
     margin-top: 20px;
+    float: right;
     &:first-child {
       border: 0;
       padding-top: 0;
@@ -187,10 +188,12 @@ input {
 
 /* products viewing */
 
-description {
-  font-size: 1em;
-  text-align: left;
-  letter-spacing: 0px;
+.description {
+  margin-left: 10px;
+  margin-top: 15px;
+  float: left;
+  width: 30%;
+
 }
 
 /* miscellaneous */
@@ -225,7 +228,6 @@ description {
     display: none;
     position: right;
     background-color: #f9f9f9;
-    min-width: 120px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -250,3 +252,18 @@ description {
 .dropdown:hover .dropbtn {
     background-color: #b7c0ce;
 }
+
+/* Carousel */
+
+ .carousel .item {
+    max-width: 100%;
+    background-color: #FFF;
+}
+
+.prodimg {
+  float: left;
+  max-width: 60%;
+  height: auto;
+  width: auto;
+}
+

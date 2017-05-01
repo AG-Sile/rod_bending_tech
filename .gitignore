@@ -28,3 +28,6 @@ certbot-auto
 
 # Ignore heroku install file
 heroku.tar.gz
+
+# Ignore uploaded test images.
+/public/uploads

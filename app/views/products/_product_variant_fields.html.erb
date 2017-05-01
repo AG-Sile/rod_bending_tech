@@ -7,5 +7,10 @@
     <%= f.label :variation %>
     <%= f.text_field :variation, class: 'form_control' %>
   </div>
-  <%= link_to_remove_association "remove variant", f %>
+  <div class='field'>
+  <div class='links'>
+    <%= link_to_add_association "Add a Picture", f, :pictures %>
+  </div>
+</div>
+  <%= link_to_remove_association "Remove Variant", f %>
 </div>

@@ -2,32 +2,30 @@
 <% provide(:title, @product_variant.product.name) %>
 <div class="row">
   <% product = @product_variant.product %>
-    <section>
-      <h1>
-        <%= product.name %>
-      </h1>
-      <div>
-        <aside class="prodimg">
-          <% all_picture_urls = @product_variant.pictures.map { |p| p.picture.url } %>
-          <%= carousel_for(all_picture_urls) if all_picture_urls.any? %>
-
-        </aside>
-        <div class="description">
-          <%= product.description %>
-
-        </div>
+  <section>
+    <h1>
+      <%= product.name %>
+    </h1>
+      <aside class="prodimg">
+        <% all_picture_urls = @product_variant.pictures.map { |p| p.picture.url } %>
+        <%= carousel_for(all_picture_urls) if all_picture_urls.any? %>
+      </aside>
+      <div class="description">
+        <%= product.description %>
       </div>
+    <% if product.product_variants.count > 1 %>
       <div class="description">
         <div class="dropdown">
-          <a class="btn btn-default" role="button" data-toggle="dropdown" href="#">Variants <span class="caret"></span></a>
+          <a class="btn btn-default" data-toggle="dropdown">Variants <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <% product.product_variants.each do | pv | %>
-              <li><a tabindex="-1"><%= link_to pv.variation, pv %> </a></li>
+              <li><a tabindex="1"><%= link_to pv.variation, pv %> </a></li>
             <% end %>
           </ul>
         </div>
       </div>
-    </section>
+    <% end %>
+  </section>
 </div>
 
 

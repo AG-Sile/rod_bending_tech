@@ -10,6 +10,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @product.product_variants.build unless @product.product_variants.any?
   end
 
    def create

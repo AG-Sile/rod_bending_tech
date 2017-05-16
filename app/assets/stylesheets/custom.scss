@@ -189,11 +189,7 @@ input {
 /* products viewing */
 
 .description {
-  margin-left: 10px;
-  margin-top: 15px;
-  float: left;
-  width: 30%;
-
+  margin-top: 5px;
 }
 
 /* miscellaneous */
@@ -263,6 +259,7 @@ input {
 .prodimg {
   float: left;
   max-width: 60%;
+  margin-right: 10px;
   height: auto;
   width: auto;
 }

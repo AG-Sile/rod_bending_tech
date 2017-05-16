@@ -1,11 +1,11 @@
 <div class='nested-fields'>
   <div class="field">
-    <%= f.label :variation_name %>
-    <%= f.text_field :name, class: 'form_control' %>
+    <%= f.label "Variation (enter \"default\" if there is no variation for this product)" %>
+    <%= f.text_field :variation, class: 'form_control' %>
   </div>
   <div class="field">
-    <%= f.label :variation %>
-    <%= f.text_field :variation, class: 'form_control' %>
+    <%= f.label "Price for this variation of the product" %>
+    <%= f.text_field :price_cents, class: 'form_control' %>
   </div>
   <div class='field'>
   <div class='links'>

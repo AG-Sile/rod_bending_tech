@@ -10,11 +10,11 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @product.product_variants.build unless @product.product_variants.any?
   end
 
    def create
     @product = Product.new(product_params)
-    binding.pry
     if @product.save
       flash[:info] = "Product succesfully created."
       redirect_to root_url
@@ -35,7 +35,6 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    binding.pry
     if @product.update_attributes(product_params)
       flash[:success] = "Product updated"
       redirect_to @product

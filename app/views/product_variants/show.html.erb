@@ -11,12 +11,15 @@
         <%= carousel_for(all_picture_urls) if all_picture_urls.any? %>
       </aside>
       <div class="description">
+        <strong class="lead"> Price: </strong><strong class="price"><%= @product_variant.price_cents.format %></strong>
+      </div>
+      <div class="description">
         <%= product.description %>
       </div>
     <% if product.product_variants.count > 1 %>
       <div class="description">
         <div class="dropdown">
-          <a class="btn btn-default" data-toggle="dropdown">Variants <span class="caret"></span></a>
+          <a class="btn btn-default" data-toggle="dropdown">Select <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <% product.product_variants.each do | pv | %>
               <li><a tabindex="1"><%= link_to pv.variation, pv %> </a></li>
@@ -26,6 +29,9 @@
       </div>
     <% end %>
   </section>
+  <h2><a href="/products"><button type="button" class="btn btn-default btn-sm">
+    <span class="glyphicon glyphicon-arrow-left"></span> Back to Products
+  </button></a></h2>
 </div>
 
 

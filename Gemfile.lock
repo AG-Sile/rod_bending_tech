@@ -232,6 +232,8 @@ GEM
     mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    monetize (1.6.0)
+      money (~> 6.8)
     money (6.8.3)
       i18n (>= 0.6.4, < 0.9)
       sixarm_ruby_unaccent (>= 1.1.1, < 2)
@@ -352,6 +354,7 @@ DEPENDENCIES
   json
   listen (= 3.0.8)
   mini_magick (= 4.5.1)
+  monetize
   money
   pg (= 0.19)
   pry

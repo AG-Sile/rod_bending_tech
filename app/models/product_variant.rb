@@ -6,5 +6,5 @@ class ProductVariant < ApplicationRecord
   composed_of :price_cents,
               :class_name => 'Money',
               :mapping => %w(price_cents cents),
-              :converter => Proc.new { |value| Money.new(value) }
+              :converter => Proc.new { |value| value.to_money }
 end

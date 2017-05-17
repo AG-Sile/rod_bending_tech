@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.update_attributes(product_params)
       flash[:success] = "Product updated"
-      redirect_to @product
+      redirect_to @product.product_variants.first
     else
       render 'edit'
     end

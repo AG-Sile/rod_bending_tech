@@ -17,6 +17,9 @@ class Cart < ApplicationRecord
       self.destroy!
       return previous_cart
     end
+    self.user_id = user.id
+    self.save!
+    self
   end
 
   def add_item(params)

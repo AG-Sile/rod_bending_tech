@@ -2,8 +2,8 @@
 
 one:
   user: one
-  type: 
+  cart_type:
 
 two:
   user: two
-  type: 
+  cart_type:

@@ -1,0 +1,11 @@
+<div class='cart_menu' >
+  <%= form_for  @cart_item do |f| %>
+    <%= f.hidden_field :product_variant_id, value: @product_variant.id %>
+    Quantity:
+    <%= f.number_field :quantity, value: 1, min: 1 %>
+    <button type="submit" class="btn btn-warning btn-sm">
+     <span class="glyphicon glyphicon-shopping-cart"></span>
+      Add to Cart
+    </button>
+  <% end %>
+</div>

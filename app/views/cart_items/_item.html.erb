@@ -1,0 +1,64 @@
+<div class="well">
+  <div class="cart_borders">
+    <div class="cart_box">
+    </div>
+
+    <div class="cart_box">
+    </div>
+
+    <div class="cart_box">
+      <div class="cart_box">
+        <b>Price:</b>
+      </div>
+      <div class="cart_box">
+        <b> Quantity: </b>
+      </div>
+    </div>
+  </div>
+
+  <% session_cart.cart_items.each do |cart_item| %>
+    <div class="cart_borders">
+      <div class="row">
+      <div class="cart_box">
+        <div class="prodimg">
+          <%= image_tag(cart_item.product_variant.pictures.first.picture.thumb) %>
+        </div>
+        <div class="description">
+          <h4><%= cart_item.product_variant.product.name %></h4>
+          <h4 class='small'><%= cart_item.product_variant.variation %></h4>
+        </div>
+        </div>
+        <div class="cart_box">
+        </div>
+        <div class="cart_box">
+            <%= form_for cart_item, remote: true do |f| %>
+            <div class="cart_box price">
+            <%= cart_item.product_variant.price_cents.format %>
+            </div>
+            <div class="cart_box">
+              <%= f.number_field :quantity, value: cart_item.quantity.to_i, class: "form-control", min: 1 %>
+              <%= f.hidden_field :product_variant_id, value: cart_item.product_variant.id %>
+            </div>
+            <div class="cart_box">
+            </div>
+            <div class="cart_box", style="float:middle;">
+              <div class="btn-group">
+                <%= f.submit "Update Quantity", class: "btn btn-primary" %>
+
+                <%= link_to "Delete", cart_item, method: :delete, class: "btn btn-danger",
+                  data: { confirm: "Are you sure?" } %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="cart_box">
+  </div>
+  <div class="cart_box">
+  </div>
+  <div class="cart_box">
+    <p class="price" style="float"><%= "Total Price: #{session_cart.subtotal.format}" %></p>
+  </div>
+</div>

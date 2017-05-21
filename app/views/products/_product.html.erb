@@ -1,9 +1,13 @@
-<li id="product-<%= product.id %>">
-  <%= product.name %>
-  <%= link_to "view", product.product_variants.first %>
-  <% if logged_in? && current_user.admin? %>
-    | <%= link_to "Edit", edit_product_path(product) %>
-    | <%= link_to "Delete", product, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-  <% end %>
-</li>
+<ul>
+  <div class="item_index">
+    <% img = product.product_variants.first.pictures.first.picture.thumb if product.product_variants.any? %>
+    <%= image_tag(img) if img %>
+    <%= product.name %>
+    <%= link_to "View", product.product_variants.first %>
+    <% if logged_in? && current_user.admin? %>
+      | <%= link_to "Edit", edit_product_path(product) %>
+      | <%= link_to "Delete", product, method: :delete,
+                                    data: { confirm: "You sure?" } %>
+    <% end %>
+  </div>
+</ul>

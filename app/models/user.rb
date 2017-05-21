@@ -18,6 +18,9 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :permission, :inclusion => { :in => ALLOWABLE_PERMISSIONS }
 
+  has_many :carts
+  has_many :cart_items, through: :carts
+
   attr_accessor :remember_token, :activation_token, :reset_token
 
   # def admin?

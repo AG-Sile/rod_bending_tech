@@ -31,6 +31,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
@@ -48,8 +49,9 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password,
-        :pasword_confirmation)
+      params.require(:user).permit(:name, :email, :password, :pasword_confirmation,
+        user_addresses_attributes: [ :id, :first_name, :last_name, :street_address_1, :street_address_2,
+          :city, :state, :zip_code, :_destroy ])
     end
 
     # Before filters
@@ -74,3 +76,4 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless current_user.admin?
     end
 end
+

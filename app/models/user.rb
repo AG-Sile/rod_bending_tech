@@ -20,6 +20,9 @@ class User < ApplicationRecord
 
   has_many :carts
   has_many :cart_items, through: :carts
+  has_many :user_addresses, inverse_of: :user
+
+  accepts_nested_attributes_for :user_addresses, allow_destroy: true
 
   attr_accessor :remember_token, :activation_token, :reset_token
 

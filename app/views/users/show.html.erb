@@ -1,3 +1,4 @@
+<% if logged_in? && current_user == @user %>
 <% provide(:title, @user.name) %>
 <div class="row">
   <aside class="col-md-4">
@@ -8,3 +9,17 @@
     </section>
   </aside>
 </div>
+<%= form_for(@user) do |f| %>
+  <div class='addresses_form'>
+    <%= f.fields_for :user_addresses do |ua| %>
+      <%= render 'user_address_fields', :f => ua %>
+    <% end %>
+    <div class='links'>
+      <%= link_to_add_association "Add Shipping Address", f, :user_addresses %>
+    </div>
+  </div>
+  <%= f.submit "Save changes", class: "btn btn-primary" %>
+<% end %>
+<% else %>
+<% redirect_to root_path %>
+<% end %>

@@ -1,9 +1,15 @@
 <% provide(:title, 'Cart Items') %>
-<h1>Items in your cart</h1>
-<ul class="products">
-  <%= render 'item' %>
-</ul>
-<h2><a href="/products"><button type="button" class="btn btn-default btn-sm">
-  <span class="glyphicon glyphicon-arrow-left"></span> Back to Products
-</button></a></h2>
+<% if session_cart.cart_items.count == 0 %>
+  <b><p class="text-center", style="padding-top: 20px">
+    Your cart is empty.  Please <%= link_to "click here", products_path %> to view our current inventory.
+  </p></b>
+<% else %>
+  <h1>Items in your cart</h1>
+  <ul class="products">
+    <%= render 'item' %>
+  </ul>
+  <h2><a href="/products"><button type="button" class="btn btn-default btn-sm">
+    <span class="glyphicon glyphicon-arrow-left"></span> Back to Products
+  </button></a></h2>
+<% end %>
 

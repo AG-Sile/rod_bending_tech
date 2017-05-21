@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   resources :products
   resources :product_variants
   resources :account_activations, only: [:edit]
+  resources :cart_items
   resources :password_resets,     only: [:new, :create, :edit, :update]
-# Let’s encrypt
-get '/.well-known/acme-challenge/:id' => 'static_pages#letsencrypt'
 end

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170521173504) do
+ActiveRecord::Schema.define(version: 20170528144258) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
@@ -18,17 +22,16 @@ ActiveRecord::Schema.define(version: 20170521173504) do
     t.integer  "quantity"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
-    t.index ["product_variant_id"], name: "index_cart_items_on_product_variant_id"
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id", using: :btree
+    t.index ["product_variant_id"], name: "index_cart_items_on_product_variant_id", using: :btree
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer  "user_id"
     t.string   "cart_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cart_type"], name: "index_carts_on_cart_type"
-    t.index ["user_id"], name: "index_carts_on_user_id"
+    t.uuid     "user_uuid"
+    t.index ["cart_type"], name: "index_carts_on_cart_type", using: :btree
   end
 
   create_table "pictures", force: :cascade do |t|
@@ -36,7 +39,7 @@ ActiveRecord::Schema.define(version: 20170521173504) do
     t.integer  "product_variant_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.index ["product_variant_id"], name: "index_pictures_on_product_variant_id"
+    t.index ["product_variant_id"], name: "index_pictures_on_product_variant_id", using: :btree
   end
 
   create_table "product_variants", force: :cascade do |t|
@@ -45,7 +48,7 @@ ActiveRecord::Schema.define(version: 20170521173504) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "price_cents"
-    t.index ["product_id"], name: "index_product_variants_on_product_id"
+    t.index ["product_id"], name: "index_product_variants_on_product_id", using: :btree
   end
 
   create_table "products", force: :cascade do |t|
@@ -66,14 +69,14 @@ ActiveRecord::Schema.define(version: 20170521173504) do
     t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["user_id"], name: "index_user_addresses_on_user_id"
+    t.index ["user_id"], name: "index_user_addresses_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
     t.string   "password_digest"
     t.string   "remember_digest"
     t.string   "permission",        default: "end_user"
@@ -82,7 +85,13 @@ ActiveRecord::Schema.define(version: 20170521173504) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.uuid     "uuid",              default: -> { "uuid_generate_v4()" }
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "product_variants"
+  add_foreign_key "pictures", "product_variants"
+  add_foreign_key "product_variants", "products"
+  add_foreign_key "user_addresses", "users"
 end

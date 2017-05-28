@@ -1,11 +1,11 @@
 class Cart < ApplicationRecord
-  belongs_to :user, optional: true
+  belongs_to :user, foreign_key: :user_uuid, primary_key: :uuid, optional: true
   has_many :cart_items, dependent: :destroy
 
   scope :shopping_cart, -> { where(cart_type: 'shopping_cart') }
 
-  def self.previous_for_user(cart_id, user_id)
-    Cart.shopping_cart.where(['id <> ? and user_id = ?', cart_id, user_id]).last
+  def self.previous_for_user(cart_id, user_uuid)
+    Cart.shopping_cart.where(['id <> ? and user_uuid = ?', cart_id, user_uuid]).last
   end
 
   def merge_with_previous_cart!(user)
@@ -17,7 +17,7 @@ class Cart < ApplicationRecord
       self.destroy!
       return previous_cart
     end
-    self.user_id = user.id
+    self.user_uuid = user.uuid
     self.save!
     self
   end
@@ -35,7 +35,7 @@ class Cart < ApplicationRecord
   end
 
   def previous_cart(user)
-    @previous_cart ||= Cart.previous_for_user(id, user.id)
+    @previous_cart ||= Cart.previous_for_user(id, user.uuid)
   end
 
   def move_item_to(cart_type, item)

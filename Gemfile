@@ -24,9 +24,10 @@ gem 'mini_magick',             '4.5.1'
 gem 'fog',                     '1.38.0'
 gem 'money'
 gem 'monetize'
-
+gem 'stripe'
+gem 'pg', '0.19'
 group :development, :test do
-  gem 'sqlite3', '1.3.12'
+#  gem 'sqlite3', '1.3.12'
   gem 'byebug',  '9.0.0', platform: :mri
   gem 'rails-controller-testing'
 end
@@ -39,7 +40,6 @@ group :development do
 end
 
 group :production do
-  gem 'pg', '0.19'
 
 end
 

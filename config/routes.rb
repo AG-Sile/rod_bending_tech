@@ -12,11 +12,18 @@ Rails.application.routes.draw do
   delete '/logout',      to: 'sessions#destroy'
   get    '/add_product', to: 'products#new'
   post   '/add_product', to: 'products#create'
+  get    '/check_out_1', to: 'shipping_addresses#new'
+  post   '/check_out_1', to: 'shipping_addresses#create'
+  get    '/check_out_2', to: 'orders#show_items'
+  post   '/check_out_2', to: 'orders#update_items'
   get    '/add_product_variant', to: 'product_variants#new'
   post   '/add_product_variant', to: 'product_variants#create'
+
   resources :users
   resources :products
+  resources :orders
   resources :product_variants
+  resources :shipping_addresses
   resources :account_activations, only: [:edit]
   resources :cart_items
   resources :password_resets,     only: [:new, :create, :edit, :update]

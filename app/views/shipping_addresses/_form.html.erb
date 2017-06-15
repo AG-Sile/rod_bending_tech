@@ -1,0 +1,11 @@
+<h1> Shipping Address </h1>
+<% current_user.user_addresses.each do |address| %>
+  <div class="row">
+  <input type="radio" name="address" value="address_id_<%=address.id%>"> <%= address.display_string %>
+  </div>
+<% end %>
+ <div class="row">
+    <input type="radio" name="address" value="new_address"> New Address:
+ </div>
+<%# render 'shipping_addresses/new_address' %>
+

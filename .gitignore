@@ -31,3 +31,6 @@ heroku.tar.gz
 
 # Ignore uploaded test images.
 /public/uploads
+
+# local env variables
+.env

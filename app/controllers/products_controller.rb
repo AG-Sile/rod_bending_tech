@@ -48,7 +48,20 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(
         :name, :description,
-        product_variants_attributes: [:id, :product_id, :name, :variation, :price_cents, :_destroy, pictures_attributes: [:id, :_destroy, :picture] ]
+        product_variants_attributes: [
+          :id,
+          :product_id,
+          :name,
+          :variation,
+          :price_cents,
+          :weight_pounds,
+          :weight_ounces,
+          :height,
+          :length,
+          :width,
+          :_destroy,
+          pictures_attributes: [:id, :_destroy, :picture]
+        ]
       )
     end
 

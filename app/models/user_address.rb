@@ -9,4 +9,21 @@ class UserAddress < ApplicationRecord
   def self.list_of_allowed_states
     ALLOWED_STATES
   end
+
+  def address_fields
+    {first_name: first_name,
+      last_name: last_name,
+      street_address_1: street_address_1,
+      street_address_2: street_address_2,
+      city: city,
+      state: state,
+      zip_code: zip_code,
+     }
+  end
+
+  def display_string
+    "#{first_name} #{last_name}
+    #{street_address_1} #{street_address_2}
+    #{city} #{state} #{zip_code}"
+  end
 end

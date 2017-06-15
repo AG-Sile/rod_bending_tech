@@ -4,6 +4,7 @@
     Your cart is empty.  Please <%= link_to "click here", products_path %> to view our current inventory.
   </p></b>
 <% else %>
+  <%= render 'orders/check_out_button' %>
   <h1>Items in your cart</h1>
   <ul class="products">
     <%= render 'item' %>

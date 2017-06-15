@@ -1,0 +1,32 @@
+<% provide(:title, 'Complete Order') %>
+
+<h1>Choose Shipping Options</h1>
+
+<ul class="products">
+
+  <% @order.order_items.each do |item| %>
+      <div class="row">
+        <%= item.product_variant.variation %>
+        <%= item.product_variant.product.name %>
+      </div>
+      <% item.shipping_rates.rates.each do |rate| %>
+        <div class="row">
+          <div class="col-md-2">
+            <input type="radio" name="<%=item.id%>_rate" value="<%=rate[:object_id]%>">
+          </div>
+          <div class="col-md-2">
+            <div class="row">
+              <%=rate[:provider] %>
+              <%=rate[:servicelevel][:name] %>
+            </div>
+            <div class="row">
+              <%= "#{rate[:days]} day delivery"%>
+            </div>
+            <div class="row">
+              <%= "Shipping cost: #{rate[:amount]}" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+  <% end %>
+</ul>

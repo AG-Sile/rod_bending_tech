@@ -53,4 +53,13 @@ class Cart < ApplicationRecord
     subtotal
   end
 
+  def convert_to_order
+    new_order = Order.find_or_create_by(user: user, status: 'pending_payment')
+    new_order.order_items.map(&:destroy)
+    cart_items.each do |item|
+      new_order.add_item(item)
+    end
+    return new_order
+  end
+
 end

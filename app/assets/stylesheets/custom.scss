@@ -147,6 +147,10 @@ input {
   height: auto !important;
 }
 
+input[type="radio"]{
+  width: auto;
+}
+
 #error_explanation {
   color: red;
   ul {

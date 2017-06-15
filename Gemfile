@@ -45,6 +45,7 @@ group :development, :test do
   gem 'byebug',  '9.0.0', platform: :mri
   gem 'rails-controller-testing'
   gem 'dotenv-rails'
+  gem 'minitest', '~> 5.10', '!= 5.10.2'
 end
 
 group :development do

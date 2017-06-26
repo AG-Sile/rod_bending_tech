@@ -3,30 +3,31 @@
 <h1>Choose Shipping Options</h1>
 
 <ul class="products">
-
+<%= form_for @order, :url => { :action => "update_items" }  do |f| %>
   <% @order.order_items.each do |item| %>
       <div class="row">
         <%= item.product_variant.variation %>
         <%= item.product_variant.product.name %>
       </div>
-      <% item.shipping_rates.rates.each do |rate| %>
+      <% shipping = item.shipping_rates %>
+      <% shipping.rates.each do |rate| %>
         <div class="row">
-          <div class="col-md-2">
-            <input type="radio" name="<%=item.id%>_rate" value="<%=rate[:object_id]%>">
-          </div>
           <div class="col-md-2">
             <div class="row">
               <%=rate[:provider] %>
               <%=rate[:servicelevel][:name] %>
             </div>
             <div class="row">
-              <%= "#{rate[:days]} day delivery"%>
+              <%= "#{rate[:amount]} - #{rate[:days]} Day Shipping"%>
             </div>
-            <div class="row">
-              <%= "Shipping cost: #{rate[:amount]}" %>
-            </div>
+          </div>
+          <div class="col-md-2">
+            <%= radio_button_tag( "#{item.id}_rate", [rate[:object_id], shipping[:object_id] ], false) %>
           </div>
         </div>
       <% end %>
   <% end %>
+
+<%= f.submit "Next", class: "col-md-8 btn btn-primary" %>
+<% end %>
 </ul>

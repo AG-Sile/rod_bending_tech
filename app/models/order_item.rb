@@ -51,7 +51,6 @@ class OrderItem < ApplicationRecord
   end
 
   def shipping_rates
-    binding.pry
     Shippo::Shipment.create(
       :address_from => origin,
       :address_to => destination,
@@ -60,4 +59,22 @@ class OrderItem < ApplicationRecord
     )
   end
 
+  def get_shipment_rate_object
+    Shippo::Shipment.get(shipping_id)[:rates].find { |rate| rate[:object_id] == shipping_rate_id }
+  end
+
+  def create_transaction
+    binding.pry
+    return if shipping_transaction_id
+    transaction = Shippo::Transaction.create(:rate => shipping_rate_id,
+      :label_file_type => "PDF",
+      :async => false
+    )
+    self.shipping_transaction_id = transaction[:object_id]
+    save!
+  end
+
+  def get_shipment_transaction_object
+    Shippo::Transaction.get(shipping_transaction_id)
+  end
 end

@@ -1,4 +1,3 @@
-<h1> Items</h1>
 <div class="row cart_borders">
   <div class="col-md-8">
   </div>
@@ -9,7 +8,7 @@
     Individual Price
   </strong>
 </div>
-<% current_user.orders.pending_payment.first.order_items.each do |item| %>
+<% @order.order_items.each do |item| %>
   <div class="row cart_borders">
     <div class="col-md-8">
       <div class="prodimg">

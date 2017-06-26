@@ -8,4 +8,11 @@ class ShippingAddress < ApplicationRecord
   def self.list_of_allowed_states
     ALLOWED_STATES
   end
+
+  def display_string
+    "#{first_name} #{last_name}
+    #{street_address_1} #{street_address_2}
+    #{city} #{state} #{zip_code}"
+  end
+
 end

@@ -12,11 +12,13 @@ class ShippingAddressesController < ApplicationController
   end
 
   def create
-    binding.pry
     if address_params.any?
       @order = current_user.carts.shopping_cart.first.convert_to_order
       @order.shipping_addresses.map(&:destroy)
       if address_params[:address] == "new_address"
+        if new_address_params[:remember] == "1"
+          current_user.user_addresses.create(new_address_params.except(:remember))
+        end
         address_fields = new_address_params
       else
         existing_address = UserAddress.find_by(id: address_params[:address].split("_").last.to_i)

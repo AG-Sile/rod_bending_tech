@@ -1,10 +1,14 @@
-class ShippingAddressesController < ApplicationController
+class OrderItemsController < ApplicationController
 
-def show
-  @order = current_user.orders.pending.first
-end
+  def create_shipping_transaction
+    item = OrderItem.find item_params[:id]
+    item.create_transaction
+    redirect_to 'orders'
+  end
 
-def update
-end
+  private
 
+    def item_params
+      params.permit(:id)
+    end
 end

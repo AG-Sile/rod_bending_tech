@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get    '/check_out_2',  to: 'orders#show_items'
   patch  '/check_out_2',  to: 'orders#update_items'
   get    '/check_out_3',  to: 'orders#new'
+  get    '/user_index',   to: 'orders#user_index'
   post   '/create_shipping_label', to: 'order_items#create_shipping_transaction'
   get    '/add_product_variant',   to: 'product_variants#new'
   post   '/add_product_variant',   to: 'product_variants#create'

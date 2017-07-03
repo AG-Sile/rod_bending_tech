@@ -10,8 +10,9 @@ class Order < ApplicationRecord
 
   validates :status, :inclusion => { :in => ALLOWED_STATUSES }
 
-  scope :pending_payment, ->  { where(status: 'pending_payment')  }
+  scope :pending_payment,  -> { where(status: 'pending_payment')  }
   scope :pending_shipment, -> { where(status: 'pending_shipment') }
+  scope :completed,        -> { where(status: ['pending_shipment','shipped'] ) }
 
   composed_of :taxes_cents,
               :class_name => 'Money',

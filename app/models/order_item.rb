@@ -18,7 +18,7 @@ class OrderItem < ApplicationRecord
       :state => 'IL',
       :zip => '60634',
       :country => 'US',
-      :phone => '+1 773 449 2625',
+      :phone => '+1 773 419 2625',
       :email => 'support@rbtfishing.com'
     }
   end
@@ -39,13 +39,16 @@ class OrderItem < ApplicationRecord
 
   def package
     pv = product_variant
-    weight = pv.weight_pounds * 16 + pv.weight_ounces
+    individual_weight = pv.weight_pounds * 16 + pv.weight_ounces
+    # We should be able to ship it all at once
+    adjusted_weight = individual_weight * quantity
+    adjusted_width = pv.width * quantity
     {
       length: pv.length,
-      width: pv.width,
+      width: adjusted_width,
       height: pv.height,
       distance_unit: :in,
-      weight: weight,
+      weight: adjusted_weight,
       mass_unit: :oz,
     }
   end
@@ -64,7 +67,6 @@ class OrderItem < ApplicationRecord
   end
 
   def create_transaction
-    binding.pry
     return if shipping_transaction_id
     transaction = Shippo::Transaction.create(:rate => shipping_rate_id,
       :label_file_type => "PDF",

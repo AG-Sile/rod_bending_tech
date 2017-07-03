@@ -1,10 +1,11 @@
-<h1> Items Pending Shipping </h1>
-<% pending_shipment = Order.pending_shipment %>
+<h1> Previous Orders </h1>
+<% orders = current_user.orders.completed %>
 <div class="row cart_borders">
   <div class="col-md-4">
+    Item Details
   </div>
   <strong class="col-md-2">
-    Customer Name
+    Order Date
   </strong>
   <strong class="col-md-2">
     Quantity
@@ -13,10 +14,10 @@
     Individual Price
   </strong>
   <strong class="col-md-2">
-    Shipping Label
+    Shipping Status
   </strong>
 </div>
-<% pending_shipment.each do |order| %>
+<% orders.each do |order| %>
   <% order.order_items.each do |item| %>
     <div class="row cart_borders">
       <div class="col-md-4">
@@ -31,8 +32,7 @@
         </div>
       </div>
       <div class="col-md-2">
-        <%= order.shipping_addresses.first.first_name %>
-        <%= order.shipping_addresses.first.last_name %>
+        <%= item.created_at.to_date %>
       </div>
       <div class="col-md-2">
         <%= item.quantity %>
@@ -41,16 +41,11 @@
         <%= item.individual_price.format %>
       </div>
       <div class='col-md-2'>
-        <% if item.shipping_transaction_id %>
-          <h2><a href="<%=item.get_shipment_transaction_object[:label_url] %>"><button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-print"></span> Print Shipping Label
-          </button></a></h2>
+        <% shipping_status = item.get_shipment_transaction_object[:tracking_status] %>
+        <% if shipping_status.nil? %>
+          <%= "Pending Shipment" %>
         <% else %>
-          <%= button_to "create_shipping_label",
-            params: {id: item.id },
-            :class=>"btn btn-default btn-icon glyphicons glyphicon-envelope" do %>
-              Create Shipping Label $<%= item.get_shipment_rate_object[:amount] %>
-          <% end %>
+          <%= shipping_status[:status] %>
         <% end %>
       </div>
     </div>

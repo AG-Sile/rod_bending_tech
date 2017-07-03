@@ -2,32 +2,38 @@
 
 <h1>Choose Shipping Options</h1>
 
-<ul class="products">
 <%= form_for @order, :url => { :action => "update_items" }  do |f| %>
   <% @order.order_items.each do |item| %>
-      <div class="row">
-        <%= item.product_variant.variation %>
-        <%= item.product_variant.product.name %>
-      </div>
-      <% shipping = item.shipping_rates %>
-      <% shipping.rates.each do |rate| %>
-        <div class="row">
-          <div class="col-md-2">
-            <div class="row">
-              <%=rate[:provider] %>
-              <%=rate[:servicelevel][:name] %>
-            </div>
-            <div class="row">
-              <%= "#{rate[:amount]} - #{rate[:days]} Day Shipping"%>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <%= radio_button_tag( "#{item.id}_rate", [rate[:object_id], shipping[:object_id] ], false) %>
-          </div>
+      <div class="row shipping_options">
+        <div class="row cart_borders">
+          <%= image_tag(item.product_variant.pictures.first.picture.thumb) %>
+          <%= item.product_variant.variation %>
+          <%= item.product_variant.product.name %>
+          <%= "X #{item.quantity}" %>
         </div>
-      <% end %>
+        <% shipping = item.shipping_rates %>
+        <% shipping.rates.each do |rate| %>
+          <div class="row cart_borders">
+            <div class="col-md-10">
+              <div class="row">
+                <%=rate[:provider] %>
+                <%=rate[:servicelevel][:name] %>
+              </div>
+              <div class="row">
+                <%=rate[:duration_terms] %>
+              </div>
+              <div class="row price">
+                <%= "$#{rate[:amount]}"%>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <%= radio_button_tag( "#{item.id}_rate", [rate[:object_id], shipping[:object_id] ], false) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
   <% end %>
 
 <%= f.submit "Next", class: "col-md-8 btn btn-primary" %>
 <% end %>
-</ul>

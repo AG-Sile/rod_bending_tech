@@ -15,6 +15,9 @@ class OrdersController < ApplicationController
   def index
   end
 
+  def user_index
+  end
+
   def show_items
     @order = current_user.pending_order
   end
@@ -22,15 +25,16 @@ class OrdersController < ApplicationController
   def update_items
     @order = current_user.pending_order
     @order.order_items.each do |item|
-      if shipping_params = shipping_params(id: item.id)
+      if shipping_params(id: item.id).empty?
+        flash[:error] = "Please select shipping options for all items"
+        redirect_to check_out_2_path
+        return
+      else
+        shipping_params = shipping_params(id: item.id)
         rate, shipment = shipping_params[:"#{item.id}_rate"].split(' ')
         item.shipping_id = shipment
         item.shipping_rate_id = rate
         item.save
-      else
-        flash[:error] = "Please select shipping options for all items"
-        redirect_to check_out_2_path
-        return
       end
     end
     @order.taxes_cents = (@order.calculate_tax * 100).to_i

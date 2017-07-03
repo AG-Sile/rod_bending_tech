@@ -1,0 +1,53 @@
+<h1> Previous Orders </h1>
+<% orders = current_user.orders.completed %>
+<div class="row cart_borders">
+  <div class="col-md-4">
+    Item Details
+  </div>
+  <strong class="col-md-2">
+    Order Date
+  </strong>
+  <strong class="col-md-2">
+    Quantity
+  </strong>
+  <strong class="col-md-2">
+    Individual Price
+  </strong>
+  <strong class="col-md-2">
+    Shipping Status
+  </strong>
+</div>
+<% orders.each do |order| %>
+  <% order.order_items.each do |item| %>
+    <div class="row cart_borders">
+      <div class="col-md-4">
+        <div class="prodimg">
+          <%= image_tag(item.product_variant.pictures.first.picture.thumb) %>
+        </div>
+        <strong class="lead">
+          <%= item.product_variant.product.name %>
+        </strong>
+        <div>
+          <%= item.product_variant.variation %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <%= item.created_at.to_date %>
+      </div>
+      <div class="col-md-2">
+        <%= item.quantity %>
+      </div>
+      <div class='col-md-2 price'>
+        <%= item.individual_price.format %>
+      </div>
+      <div class='col-md-2'>
+        <% shipping_status = item.get_shipment_transaction_object[:tracking_status] %>
+        <% if shipping_status.nil? %>
+          <%= "Pending Shipment" %>
+        <% else %>
+          <%= shipping_status[:status] %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

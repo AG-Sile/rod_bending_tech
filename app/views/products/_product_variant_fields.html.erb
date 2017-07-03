@@ -7,6 +7,29 @@
     <%= f.label "Price for this variation of the product" %>
     <%= f.text_field :price_cents, class: 'form_control' %>
   </div>
+  <div class="field">
+    <%= f.label :weight_pounds %>
+    <%= f.number_field :weight_pounds, class: 'form_control' %>
+  </div>
+  <div class="field">
+    <%= f.label :weight_ounces %>
+    <%= f.number_field :weight_ounces, class: 'form_control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :height %>
+    <%= f.number_field :height, class: 'form_control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :width %>
+    <%= f.number_field :width, class: 'form_control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :length %>
+    <%= f.number_field :length, class: 'form_control' %>
+  </div>
   <div class='field'>
   <div class='links'>
     <%= link_to_add_association "Add a Picture", f, :pictures %>

@@ -17,18 +17,35 @@ gem 'jbuilder',                 '2.4.1'
 gem 'bootstrap-sass',           '3.3.7'
 gem "sentry-raven"
 gem 'pry'
-gem 'json'
+gem 'json', '~>1.8'
+
+# Nested forms
 gem "cocoon"
+
+# Images
 gem 'carrierwave',             '0.11.2'
 gem 'mini_magick',             '4.5.1'
+
 gem 'fog',                     '1.38.0'
+
+# Money formatting
 gem 'money'
 gem 'monetize'
 
+# Payments
+gem 'stripe'
+
+# DB
+gem 'pg', '0.19'
+
+# Everything shipping related
+gem 'shippo', '3'
+
 group :development, :test do
-  gem 'sqlite3', '1.3.12'
   gem 'byebug',  '9.0.0', platform: :mri
   gem 'rails-controller-testing'
+  gem 'dotenv-rails'
+  gem 'minitest', '~> 5.10', '!= 5.10.2'
 end
 
 group :development do
@@ -39,7 +56,6 @@ group :development do
 end
 
 group :production do
-  gem 'pg', '0.19'
 
 end
 

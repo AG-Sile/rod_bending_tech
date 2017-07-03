@@ -1,0 +1,65 @@
+<% provide(:title, 'Complete Order') %>
+<h1>Complete Order</h1>
+
+<ul class="products">
+  <%= render 'orders/item' %>
+</ul>
+<%= form_for @shipping_address do |add_f| %>
+  <%= render 'form' %>
+  <div class='nested-fields'>
+    <div class="row">
+      <div class="field">
+        <div class="col-md-6">
+          <%= add_f.label :first_name %>
+          <%= add_f.text_field :first_name, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="field">
+          <%= add_f.label :last_name %>
+          <%= add_f.text_field :last_name, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="field">
+          <%= add_f.label :street_address_1 %>
+          <%= add_f.text_field :street_address_1, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="field">
+          <%= add_f.label :street_address_2 %>
+          <%= add_f.text_field :street_address_2, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="field">
+          <%= add_f.label :city %>
+          <%= add_f.text_field :city, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="field">
+          <%= add_f.label :zip_code %>
+          <%= add_f.text_field :zip_code, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="field">
+          <%= add_f.label :state %>
+          <%= add_f.select :state, UserAddress.list_of_allowed_states, class: 'form-control' %>
+         </div>
+       </div>
+     </div>
+  </div>
+  <%= add_f.label :remember, class: "checkbox inline addresses_form col-md-5" do %>
+    <%= add_f.check_box :remember %>
+    <span> Remember this address </span>
+  <% end %>
+
+<%= add_f.submit "Next", class: "btn btn-primary" %>
+<% end %>

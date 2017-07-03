@@ -1,0 +1,36 @@
+<% provide(:title, 'Complete Order') %>
+<h1>Review and Complete Order</h1>
+
+<h1>Shipping Address:</h1>
+<%= @order.shipping_addresses.first.display_string %>
+
+<h1>Order Items:</h1>
+<%= render 'order_items/show_item' %>
+<h1>Price Information:</h1>
+
+<div class="row">
+  Total Items Price: <b class="price">$<%= @order.items_price %></b>
+</div>
+<div class="row">
+ + Shipping Costs:    <b class="price">$<%= @order.shipping_costs %></b>
+</div>
+<div class="row">
+ + Taxes:             <b class="price">$<%= @order.taxes_cents %></b>
+</div>
+<div class="row">
+ = Total:             <b class="price">$<%= @order.total_price %></b>
+</div>
+<%= form_for @order do |order| %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="Your order payment"
+            data-email="<%= current_user.email %>"
+            data-amount="<%= @order.total_price * 100 %>"
+            data-locale="auto"></script>
+
+  </div>
+</div>
+<% end %>
+

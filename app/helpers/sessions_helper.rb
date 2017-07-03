@@ -72,7 +72,7 @@ module SessionsHelper
     if !cookies[:cart_id].blank?
       @session_cart = Cart.includes(:cart_items).find_by_id(cookies[:cart_id])
       unless @session_cart
-        @session_cart = Cart.create!(:user_id => current_user.id, cart_type: 'shopping_cart')
+        @session_cart = Cart.create!(:user_uuid => current_user.uuid, cart_type: 'shopping_cart')
         cookies[:cart_id] = @session_cart.id
       end
     elsif current_user

@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    correct_user
   end
 
   def new
@@ -67,8 +67,12 @@ class UsersController < ApplicationController
 
     # Confirms the correct user.
     def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+      begin
+        @user = User.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        redirect_to(root_url)
+      end
+        redirect_to(root_url) unless current_user?(@user)
     end
 
     # Confirms an admin user.

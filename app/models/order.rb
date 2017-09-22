@@ -40,6 +40,12 @@ class Order < ApplicationRecord
     )
   end
 
+  def email_confirmation(user)
+    UserMailer.order_confirmation(user).deliver_now
+    UserMailer.order_placed.deliver_now
+
+  end
+
   def add_item(cart_item)
     order_items.create!(product_variant: cart_item.product_variant,
       quantity: cart_item.quantity,

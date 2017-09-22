@@ -14,4 +14,13 @@ class UserMailer < ApplicationMailer
     @user = user
     mail to: user.email, subject: "Password reset"
   end
+
+  def order_confirmation(user)
+    @user = user
+    mail to: user.email, subject: "Your order has been placed"
+  end
+
+  def order_placed
+    mail to: ENV['SELLER_EMAIL'], subject: "An order has been placed"
+  end
 end

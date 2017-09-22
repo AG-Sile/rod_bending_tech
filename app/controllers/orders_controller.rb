@@ -50,6 +50,7 @@ class OrdersController < ApplicationController
     @order.status = 'pending_shipment'
     @order.save!
     current_user.carts.shopping_cart.first.destroy!
+    @order.email_confirmation(current_user.email)
     redirect_to root_url, notice: 'Order was successfully created.'
 
     rescue Stripe::CardError => e

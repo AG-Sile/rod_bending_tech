@@ -39,7 +39,7 @@ class OrderItem < ApplicationRecord
 
   def package
     pv = product_variant
-    individual_weight = pv.weight_pounds * 16 + pv.weight_ounces
+    individual_weight = pv.weight_pounds.to_i * 16 + pv.weight_ounces.to_i
     # We should be able to ship it all at once
     adjusted_weight = individual_weight * quantity
     adjusted_width = pv.width * quantity

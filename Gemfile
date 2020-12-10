@@ -2,10 +2,10 @@ source 'https://rubygems.org'
 
 ruby '2.4.1'
 
-gem 'rails',                    '5.2.0'
+gem 'rails',                    '5.2.4.3'
 gem 'bcrypt',                   '3.1.11'
 gem 'faker',                    '1.6.6'
-gem 'will_paginate',            '3.1.0'
+gem 'will_paginate',            '3.1.7'
 gem 'bootstrap-will_paginate',  '0.0.10'
 gem 'puma',                     '3.12.6'
 gem 'sass-rails',               '5.0.6'

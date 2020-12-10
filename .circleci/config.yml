@@ -16,3 +16,4 @@ jobs:
       - run: # actual tests
           name: run tests
           command: bundle exec rails test
+

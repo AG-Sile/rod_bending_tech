@@ -1,23 +1,25 @@
 source 'https://rubygems.org'
 
-gem 'rails',                    '5.0.0.1'
+ruby '2.4.1'
+
+gem 'rails',                    '5.2.0'
 gem 'bcrypt',                   '3.1.11'
 gem 'faker',                    '1.6.6'
 gem 'will_paginate',            '3.1.0'
 gem 'bootstrap-will_paginate',  '0.0.10'
-gem 'puma',                     '3.4.0'
+gem 'puma',                     '3.12.4'
 gem 'sass-rails',               '5.0.6'
 gem 'uglifier',                 '3.0.4'
-gem 'coffee-rails',             '4.2.1'
+gem 'coffee-rails',             '4.2.2'
 gem 'jquery-rails',             '4.1.1'
 gem 'turbolinks',               '5.0.1'
 gem 'execjs'
 gem 'therubyracer'
-gem 'jbuilder',                 '2.4.1'
+gem 'jbuilder',                 '2.7.0'
 gem 'bootstrap-sass',           '3.3.7'
 gem "sentry-raven"
 gem 'pry'
-gem 'json', '~>1.8'
+gem 'json', '~>2.3'
 
 # Nested forms
 gem "cocoon"
@@ -39,7 +41,7 @@ gem 'stripe'
 gem 'pg', '0.19'
 
 # Everything shipping related
-gem 'shippo', '3'
+gem 'shippo', '4'
 
 group :development, :test do
   gem 'byebug',  '9.0.0', platform: :mri

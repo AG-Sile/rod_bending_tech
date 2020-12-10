@@ -16,7 +16,7 @@ gem 'turbolinks',               '5.0.1'
 gem 'execjs'
 gem 'therubyracer'
 gem 'jbuilder',                 '2.7.0'
-gem 'bootstrap-sass',           '3.3.7'
+gem 'bootstrap-sass',           '3.4.1'
 gem "sentry-raven"
 gem 'pry'
 gem 'json', '~>2.3'

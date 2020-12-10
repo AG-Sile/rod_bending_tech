@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.4.1'
 
-gem 'rails',                    '5.2.4.3'
+gem 'rails',                    '5.2.4.4'
 gem 'bcrypt',                   '3.1.11'
 gem 'faker',                    '1.6.6'
 gem 'will_paginate',            '3.1.7'

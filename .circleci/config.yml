@@ -33,5 +33,5 @@ jobs:
             bin/rails restart
       - run: # actual tests
           name: run tests
-          command: bundle exec rails test
+          command: bundle install | bundle exec rails test
 

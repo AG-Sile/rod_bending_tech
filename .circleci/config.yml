@@ -31,7 +31,5 @@ jobs:
             bundle exec rake db:create
             bin/rails db:setup
             bin/rails restart
-      - run: # actual tests
-          name: run tests
-          command: bundle install | bundle exec rails test
+            bundle exec rails test
 

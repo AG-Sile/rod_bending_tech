@@ -5,7 +5,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/ruby:2.5.8
         environment:
           RAILS_ENV: test
           PGHOST: 127.0.0.1
@@ -22,7 +22,7 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
+          command: bundle check --path=vendor/cache || bundle install --path=vendor/cache --jobs 4 --retry 3
 
       - run: sudo apt install -y postgresql-client || true
       - run:
@@ -33,5 +33,5 @@ jobs:
             bin/rails restart
       - run: # actual tests
           name: run tests
-          command: bundle exec rails test
+          command: bundle exec rake test
 

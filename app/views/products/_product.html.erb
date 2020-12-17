@@ -1,6 +1,6 @@
 <ul>
   <div class="item_index">
-    <% img = product.product_variants.first.pictures.first.picture.thumb if product.product_variants.any? %>
+    <% img = product.product_variants.first&.pictures&.first&.picture&.thumb&.url %>
     <%= image_tag(img) if img %>
     <%= product.name %>
     <%= link_to "View", product.product_variants.first %>

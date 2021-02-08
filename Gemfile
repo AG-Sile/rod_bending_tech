@@ -26,7 +26,7 @@ gem 'json', '~>2.3'
 gem "cocoon"
 
 # Images
-gem 'carrierwave',             '2.1.0'
+gem 'carrierwave',             '2.1.1'
 gem 'mini_magick',             '4.11.0'
 
 gem 'fog',                     '1.38.0'
